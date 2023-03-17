@@ -76,8 +76,6 @@ export default {
               
               store[taskIndex].title = ToDoTitle.value;
               store[taskIndex].message = ToDoMessage.value;
-              // store[taskIndex].date = ToDoDate.value;
-              // store[taskIndex].time = ToDoTime.value;
               store[taskIndex].status = ToDoStatus.value;
 
             

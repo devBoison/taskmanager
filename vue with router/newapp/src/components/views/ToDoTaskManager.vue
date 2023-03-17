@@ -37,13 +37,13 @@
 
 <script>
 
-import {temporaryIndex, delItem, store} from '../state/store.js';
+import {temporaryIndex, taskSelected, delItem, store} from '../state/store.js';
 
 
 import { useRouter } from 'vue-router';
 import { unref} from 'vue';
 
-// const tasksSelected = unref(taskSelected);
+const tasksSelected = unref(taskSelected);
 
   export default{
       name: 'ToDoTaskManager',
@@ -63,16 +63,18 @@ import { unref} from 'vue';
         }
     }
 }
-    // function taskSelector(index){
-
-    // }    
+    function taskSelector(index){
+        tasksSelected.id = index;
+        taskSelected.selected = taskSelected.selected === true ? false : true;
+        
+    }    
 
 
     return{
             ApiData: unref(store),
             delItem: delItem,
             editButton: editButtonHandler,
-            // taskSelectButton: taskSelector,
+            taskSelectButton: taskSelector,
         }
     
         
