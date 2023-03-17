@@ -31,21 +31,22 @@
 
 
 
-      <div class="sm:col-span-2">
-        <div class="relative mt-1">
-          <div class="absolute inset-y-0 left-0 flex items-center">
-            <select v-model="status" id="country" name="status" class="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
-              <option value="not set" selected>Status</option>
-              <option value="todo">TODO</option>
-              <option value="pending">PENDING</option>
-              <option value="completed">COMPLETED</option>
-            </select>
-          </div>
-          <input type="text" name="" id="" autocomplete="" >
+   
+
+      <div class="relative">
+        <select  v-model="status" class="hover:cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
+          <option disabled value="">SELECT TASK STATUS</option>
+          <option value="todo">TODO</option>
+          <option value="pending">PENDING</option>
+          <option value="done">COMPLETED</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
       </div>
-      
     </div>
+
+
     <div class="mt-10">
       <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add a task</button>
     </div>

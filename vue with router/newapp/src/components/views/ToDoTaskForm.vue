@@ -62,8 +62,8 @@
 
 
     <div class="relative">
-        <select  v-model="status" class="hover:cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-          <option disabled value="">Select Task Status</option>
+        <select  v-model="status" class="hover:cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
+          <option disabled value="">SELECT TASK STATUS</option>
           <option value="todo">TODO</option>
           <option value="pending">PENDING</option>
           <option value="done">COMPLETED</option>
