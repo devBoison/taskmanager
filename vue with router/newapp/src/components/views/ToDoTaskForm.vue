@@ -63,7 +63,7 @@
 
     <div class="relative">
         <select  v-model="status" class="hover:cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-          <option disabled value="">Please select one</option>
+          <option disabled value="">Select Task Status</option>
           <option value="todo">TODO</option>
           <option value="pending">PENDING</option>
           <option value="done">COMPLETED</option>
@@ -74,7 +74,7 @@
       </div>
     </div>
     <div class="mt-10">
-      <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Okay</button>
+      <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add a task</button>
     </div>
   </form>
 </div>
