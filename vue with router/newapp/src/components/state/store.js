@@ -7,19 +7,28 @@ export let temporaryIndex = ref(0);
 export let taskSelected = reactive([{id:0, selected: false}]);
 
 
-const unrefTaskSelected = unref(taskSelected);
+
 
 
 
 
 export function delItem(index){
+    const unrefTaskSelected = {...taskSelected};
     if(unref(store).length > 0){
-        if(unrefTaskSelected.id === index){
-            unref(store).splice(index, 1);
+
+        if(unrefTaskSelected[0].selected){
+            if(unrefTaskSelected[0].id === index){
+           
+                unref(store).splice(index, 1);
+            }
+            else{
+                alert('please select to delete')
+            }
         }
         else{
-            alert('please select to delete')
+            alert('No task selected!')
         }
+       
         
     }
 }

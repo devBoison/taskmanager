@@ -6,7 +6,7 @@
               <div class="w-full divide-y divide-slate-200 overflow-y-scroll">
                   <div class="flex justify-around w-3/4 h-24 py-4 first:pt-0 last:pb-0" v-for="(item, index) in ApiData" :key="index">
                       <div class="flex align-center ml-4">
-                          <input class="peer/draft" type="checkbox" @change="taskSelectButton(index)"/>
+                          <input class="hover:cursor-pointer" type="checkbox" @change="taskSelectButton(index)"/>
                       </div>
                       <div class="w-11/12 text-left ml-4">
                           <h2 class="text-xl font-medium text-black">{{ item.title }}</h2>
@@ -65,8 +65,7 @@ const tasksSelected = unref(taskSelected);
 }
     function taskSelector(index){
         tasksSelected.id = index;
-        taskSelected.selected = taskSelected.selected === true ? false : true;
-        
+        taskSelected.selected = taskSelected.selected ? false : true;
     }    
 
 
