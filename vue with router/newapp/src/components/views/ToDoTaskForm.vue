@@ -74,7 +74,7 @@
       </div>
     </div>
     <div class="mt-10">
-      <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add a task</button>
+      <button :disabled="!validateForm" type="submit" class="disabled:bg-gray-100 block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add a task</button>
     </div>
   </form>
 </div>
@@ -102,15 +102,20 @@ import Swal from 'sweetalert2'
           const ToDoStatus = ref('');
 
          
+          function validateForm(){
+          
+           
+            // if((ToDoTitle.value) && (ToDoMessage.value) && (ToDoStatus.value) && (ToDoDate.value) && (ToDoTime.value)){
+            //   return true;
+            // }
+          }
 
           function storeData(){
-            if(unref(ToDoTitle) && unref(ToDoMessage) && unref(ToDoStatus)){
-    
               ApiData.push({
                 title: (unref(ToDoTitle)).replace(/"([^"]+(?="))"/g, '$1'),
                 message:(unref(ToDoMessage)).replace(/"([^"]+(?="))"/g, '$1'),
-                date: moment(ToDoDate).format('dddd'),
-                time: moment(ToDoTime).startOf('hour').fromNow(),
+                date: moment(ToDoDate),
+                time: moment(ToDoTime),
                 status: (unref(ToDoStatus)).replace(/"([^"]+(?="))"/g, '$1'),
               });
 
@@ -124,11 +129,8 @@ import Swal from 'sweetalert2'
 
               router.push('/tasks');
               
-            }else{
-              Swal.fire("Please fill in empty fields!", "");
             }
-          
-          } 
+
 
 
           return{
@@ -139,6 +141,7 @@ import Swal from 'sweetalert2'
             status: ToDoStatus,
             storeData: storeData,
             ApiData: ApiData,
+            validateForm: validateForm,
           }
 
         }

@@ -14,8 +14,8 @@
                               {{ item.message }}
                           </p> 
                           <div class="w-full mt-1 text-sm">
-                          <span class="pr-2">{{ item.date }}</span>
-                          <span>  {{ item.time }}</span>
+                          <span class="pr-2">{{ (item.date).format('dddd') }}</span>
+                          <span>  {{ (item.time).startOf('hour').fromNow() }}</span>
                           <span class="pl-2">{{item.status}}</span>
                           </div>
                       </div>
@@ -37,11 +37,11 @@
 
 <script>
 
-import {temporaryIndex, delItem, store} from '../state/store.js';
-
+import {temporaryIndex, delItem, store, taskSelected} from '../state/store.js';
+import { unref } from 'vue';
 
 import { useRouter } from 'vue-router';
-import { unref} from 'vue';
+
 
 // const tasksSelected = taskSelected;
 
@@ -63,27 +63,33 @@ import { unref} from 'vue';
         }
     }
 }
-    // function taskSelector(index, e){
-    //     if(taskSelected.filter((item)=>{return item.id == index})){
-    //         taskSelected.selected = e.target.checked ? true : false;
-    //     }
-    //     else{
-    //         tasksSelected.push({
-    //         id:index,
-    //         selected: e.target.checked ? true : false,
-    //     })
-    //     }
-       
+    // const uniqueSelection = new Set();
 
+    // function taskSelector(index, e){   
+    //     if(taskSelected.length === 0){
+    //       taskSelected.push({id:index, selected: e.target.checked ? true : false})
+    //     }
+    //     else if(taskSelected.length > 0){
+    //         for(const i of taskSelected){
+    //             if((taskSelected[i].id) === index){
+    //                 taskSelected[i].selected = e.target.checked ? true : false;
+    //             }
+    //             else{
+    //                 taskSelected.push({
+    //                     id: index,
+    //                     selected: e.target.checked ? true : false,
+    //                 })
+    //             }
+    //         }
+    //     }
     //     console.log(taskSelected);
-    // }    
-
+    // }
 
     return{
             ApiData: unref(store),
             delItem: delItem,
             editButton: editButtonHandler,
-            // taskSelectButton: taskSelector,
+            taskSelectButton: taskSelector,
         }
     
         
