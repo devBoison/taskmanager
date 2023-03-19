@@ -12,6 +12,7 @@ export let taskSelected = reactive([]);
 
 
 
+
 export function delItem(){
     const unrefTaskSelected = {...taskSelected};
     if(unref(store).length > 0){

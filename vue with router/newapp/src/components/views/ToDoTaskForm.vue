@@ -13,19 +13,18 @@
       </defs>
     </svg>
   </div> -->
- 
   <form class="mx-auto max-w-xl mb-4" @submit.stop.prevent="storeData">
     <div class="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
     
       <div class="sm:col-span-2">
         <div class="mt-1">
-          <input v-model="title"  type="text" name="title" id="company" autocomplete="title" placeholder="title" class="hover:border-sky-600 block w-full rounded-md border-2 py-2 px-3.5 text-gray-400  placeholder:text-gray-400 sm:text-sm sm:leading-6">
+          <input v-model="title" @change="checkFieldsFilled"  type="text" name="title" id="company" autocomplete="title" placeholder="title" class="hover:border-sky-600 block w-full rounded-md border-2 py-2 px-3.5 text-gray-400  placeholder:text-gray-400 sm:text-sm sm:leading-6">
         </div>
       </div>
       
       <div class="sm:col-span-2">
         <div class="mt-1">
-          <textarea v-model="message" placeholder="description" id="message" rows="4" class="hover:border-sky-600 block w-full rounded-md border-2 py-2 px-3.5 text-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6"></textarea>
+          <textarea v-model="message" @change="checkFieldsFilled" placeholder="description" id="message" rows="4" class="hover:border-sky-600 block w-full rounded-md border-2 py-2 px-3.5 text-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6"></textarea>
         </div>
       </div>
 
@@ -33,36 +32,21 @@
       <div>
     
         <div class="mt-2.5">
-          <input v-bind="date" type="date" name="date" id="first-name"  class="hover:border-sky-600 hover:cursor-pointer block w-full rounded-md border-2 py-2 px-3.5 text-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6">
+          <input v-model="date" @change="checkFieldsFilled" type="date" name="date" id="first-name"  class="hover:border-sky-600 hover:cursor-pointer block w-full rounded-md border-2 py-2 px-3.5 text-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6">
         </div>
       </div>
       <div>
 
         <div class="mt-2.5">
-          <input v-bind="time" type="time" name="time" id="last-name" class="hover:border-sky-600 hover:cursor-pointer block w-full rounded-md border-2 py-2 px-3.5 text-gray-400  placeholder:text-gray-400 sm:text-sm sm:leading-6">
+          <input v-model="time" @change="checkFieldsFilled" type="time" name="time" id="last-name" class="hover:border-sky-600 hover:cursor-pointer block w-full rounded-md border-2 py-2 px-3.5 text-gray-400  placeholder:text-gray-400 sm:text-sm sm:leading-6">
         </div>
       </div>
 
 
-<!-- 
-      <div>
-        <div class="relative mt-1">
-          <div>
-            <select v-model="status" id="country" name="status" class="h-full rounded-md border-2 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 sm:text-sm sm:leading-6">
-              <option value="not set" aria-selected="true" selected>STATUS</option>
-              <option value="todo">TODO</option>
-              <option value="pending">PENDING</option>
-              <option value="completed">COMPLETED</option>
-            </select>
-          </div>
-          <input type="text" name="" id="" autocomplete="" >
-        </div>
-      </div> -->
-    <!-- </div> -->
 
 
     <div class="relative">
-        <select  v-model="status" class="hover:cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
+        <select  v-model="status" @change="checkFieldsFilled" class="hover:cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
           <option disabled value="">SELECT TASK STATUS</option>
           <option value="todo">TODO</option>
           <option value="pending">PENDING</option>
@@ -74,7 +58,7 @@
       </div>
     </div>
     <div class="mt-10">
-      <button :disabled="!validateForm" type="submit" class="disabled:bg-gray-100 block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add a task</button>
+      <input v-bind:disabled="disableButton" type="submit" class="disabled:bg-gray-100 block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" value="Add a task"/>
     </div>
   </form>
 </div>
@@ -85,7 +69,7 @@ import {ref, unref} from 'vue';
 import { store } from '../state/store';
 import moment from 'moment';
 import { useRouter } from 'vue-router';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 
     export default{
@@ -100,15 +84,22 @@ import Swal from 'sweetalert2'
           const ToDoDate = ref('');
           const ToDoTime = ref('');
           const ToDoStatus = ref('');
-
-         
-          function validateForm(){
           
-           
-            // if((ToDoTitle.value) && (ToDoMessage.value) && (ToDoStatus.value) && (ToDoDate.value) && (ToDoTime.value)){
-            //   return true;
-            // }
+          let disableButton = ref(true);
+          
+          const checkFieldsFilled = () =>{
+            if(Boolean(unref(ToDoTitle)) && Boolean(unref(ToDoMessage)) && Boolean(unref(ToDoDate)) && Boolean(unref(ToDoTime)) && Boolean(unref(ToDoStatus))){
+             //toggle state (disable == false)
+                  disableButton.value = false;
+            }
+            else{
+                  disableButton.value = true;
+            }
           }
+      
+         
+          
+          
 
           function storeData(){
               ApiData.push({
@@ -128,7 +119,6 @@ import Swal from 'sweetalert2'
               })
 
               router.push('/tasks');
-              
             }
 
 
@@ -141,7 +131,8 @@ import Swal from 'sweetalert2'
             status: ToDoStatus,
             storeData: storeData,
             ApiData: ApiData,
-            validateForm: validateForm,
+            checkFieldsFilled: checkFieldsFilled,
+            disableButton: disableButton,
           }
 
         }

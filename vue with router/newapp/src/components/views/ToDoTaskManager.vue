@@ -37,7 +37,7 @@
 
 <script>
 
-import {temporaryIndex, delItem, store, taskSelected} from '../state/store.js';
+import {temporaryIndex, delItem, store} from '../state/store.js';
 import { unref } from 'vue';
 
 import { useRouter } from 'vue-router';
@@ -89,7 +89,7 @@ import { useRouter } from 'vue-router';
             ApiData: unref(store),
             delItem: delItem,
             editButton: editButtonHandler,
-            taskSelectButton: taskSelector,
+            // taskSelectButton: taskSelector,
         }
     
         
