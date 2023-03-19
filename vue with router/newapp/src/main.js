@@ -1,14 +1,11 @@
-import {createApp} from 'vue';
-import {createRouter, createWebHistory} from 'vue-router';
+import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import App from './App.vue'
 // import ToDoApp from './components/views/ToDoApp.vue';
 import ToDoTaskManager from './components/views/ToDoTaskManager.vue';
 import ToDoTaskForm from './components/views/ToDoTaskForm.vue';
 import ToDoEditor from './components/views/ToDoEditor.vue';
-
-
-
 
 
 const routes = [

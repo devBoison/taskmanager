@@ -1,15 +1,12 @@
 <template>
-    <ToDoApp/>
+  <ToDoApp />
 </template>
 
 <script>
-import ToDoApp from './components/views/ToDoApp.vue';
-
+import ToDoApp from "./components/views/ToDoApp.vue";
 
 export default {
-  name: 'App',
-  components: {ToDoApp},
-}
-
+  name: "App",
+  components: { ToDoApp },
+};
 </script>
-
