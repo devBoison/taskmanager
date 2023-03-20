@@ -6,6 +6,7 @@ import App from './App.vue'
 import ToDoTaskManager from './components/views/ToDoTaskManager.vue';
 import ToDoTaskForm from './components/views/ToDoTaskForm.vue';
 import ToDoEditor from './components/views/ToDoEditor.vue';
+import './assets/css/dist/main.css';
 
 
 const routes = [
@@ -14,7 +15,7 @@ const routes = [
     path: '/',
     component: '',
     children: [
-      {
+      { 
         path: 'tasks',
         name: 'Tasks',
         component: ToDoTaskManager,
